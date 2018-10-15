@@ -1,0 +1,4 @@
+id,nama,jenisKelamin
+1,anggi, pria
+2,dadang, pria
+3,rani,wanita
