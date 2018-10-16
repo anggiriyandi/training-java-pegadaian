@@ -12,11 +12,18 @@
     koneksiDatabase.setDbPassword("admin");-->
     
 
-    <bean id="koneksiDatabase" class="id.co.pegadaian.training.spring.ioc.KoneksiDatabase">   
+    <bean id="koneksiDatabaseBean" class="id.co.pegadaian.training.spring.ioc.KoneksiDatabase">   
         <property name="dbDriver" value="com.mysql.jdbc.Driver"/>
         <property name="dbUrl" value="jdbc:mysql://localhost/latihan_java"/>
         <property name="dbUsername" value="root"/>
         <property name="dbPassword" value="admin"/>
+    </bean>
+    
+    <!--NasabahDao nasabahDao = new NasabahDao();-->
+    <!--nasabahDao.setKonseksiDatabase = koneksiDatabase;-->
+   
+    <bean id="nasabahDao" class="id.co.pegadaian.training.spring.ioc.NasabahDao">
+        <property name="koneksiDatabase" ref="koneksiDatabaseBean"/>
     </bean>
     
 </beans>

@@ -20,14 +20,15 @@ public class MainIocSpring {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-ioc.xml");
         
-        KoneksiDatabase koneksiDatabase = context.getBean("koneksiDatabase", KoneksiDatabase.class);
+        KoneksiDatabase koneksiDatabase = (KoneksiDatabase) context.getBean("koneksiDatabaseBean");
+        NasabahDao nasabahDao = (NasabahDao) context.getBean("nasabahDao");
         
-        System.out.println("driver name : " + koneksiDatabase.getDbDriver());
-        System.out.println("db username : " + koneksiDatabase.getDbUsername());
-        System.out.println("db password : " + koneksiDatabase.getDbPassword());
+//        System.out.println("driver name : " + koneksiDatabase.getDbDriver());
+//        System.out.println("db username : " + koneksiDatabase.getDbUsername());
+//        System.out.println("db password : " + koneksiDatabase.getDbPassword());
+//        
+//        NasabahDao nasabahDao = new NasabahDao(koneksiDatabase);
         
-        NasabahDao nasabahDao = new NasabahDao(koneksiDatabase);
         nasabahDao.testKoneksi();
-        
     }
 }

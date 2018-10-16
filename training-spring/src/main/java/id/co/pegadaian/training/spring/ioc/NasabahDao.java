@@ -15,7 +15,13 @@ import java.sql.SQLException;
 public class NasabahDao {
     
     private KoneksiDatabase koneksiDatabase;
+
+    public void setKoneksiDatabase(KoneksiDatabase koneksiDatabase) {
+        this.koneksiDatabase = koneksiDatabase;
+    }
     
+    public NasabahDao(){}
+//    
     public NasabahDao(KoneksiDatabase koneksiDatabase) {
         this.koneksiDatabase = koneksiDatabase;
     }
