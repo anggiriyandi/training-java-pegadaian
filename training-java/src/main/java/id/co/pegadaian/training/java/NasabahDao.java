@@ -7,6 +7,7 @@ package id.co.pegadaian.training.java;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -22,9 +23,11 @@ public class NasabahDao {
     
     Connection connection;
     
+    private final String SQL_INSERT = "insert into nasabah (id,nama,jenis_kelamin) values (?,?,?)";
+    
     
     public void connect() throws ClassNotFoundException, SQLException{
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName(dbDriver);
         connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
         System.out.println("Koneksi Berhasil");
     }
@@ -35,6 +38,13 @@ public class NasabahDao {
         }
     }
     
-    public void simpan(Nasabah nasabah){}
+    public void simpan(Nasabah nasabah) throws SQLException{
+        
+        PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
+        ps.setString(1, nasabah.getId());
+        ps.setString(2, nasabah.getNama());
+        ps.setString(3, nasabah.getJenisKelamin().toString());
+        ps.executeUpdate();
+    }
     
 }
