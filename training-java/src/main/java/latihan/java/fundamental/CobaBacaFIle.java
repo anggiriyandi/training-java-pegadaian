@@ -6,9 +6,11 @@
 package latihan.java.fundamental;
 
 import id.co.pegadaian.training.java.BacaFileHelper;
+import id.co.pegadaian.training.java.Nasabah;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLDataException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,16 +21,21 @@ import java.util.logging.Logger;
 public class CobaBacaFIle {
     
     
-    public static void main(String[] args) {
-        BacaFileHelper helper = new BacaFileHelper("src/main/resources/data_nasabah.txts");
+    public static void main(String[] args) throws FileNotFoundException, IOException, SQLDataException {
+        BacaFileHelper helper = new BacaFileHelper("src/main/resources/data_nasabah.txt");
        
-        try {
             helper.bukaFile();
-            helper.bacaSemuaDataFile();
+//            helper.bacaSemuaDataFile();
+            
+            List<Nasabah> dataNasabah = helper.cariSemuaNasabah();
+            
+            for (Nasabah nasabah : dataNasabah) {
+                System.out.println("Nasabah dengan id : " + nasabah.getId());
+                System.out.println("nama : " + nasabah.getNama());
+                System.out.println("jenis kelamin : " + nasabah.getJenisKelamin());
+            }
+            
             helper.tutupFile();
-        } catch(Exception ex){
-            System.out.println("terjadi kesalahan");
-        }
         
 //        catch (FileNotFoundException e) {
 //            System.out.println("Terjadi error saat buka file");

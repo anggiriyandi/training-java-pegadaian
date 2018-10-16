@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLDataException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,7 +49,31 @@ public class BacaFileHelper {
         }
     }
     
-    public List<Nasabah> cariSemuaNasabah(){
-        return null;
+    public List<Nasabah> cariSemuaNasabah() throws IOException{
+        
+        List<Nasabah> result = new ArrayList<>();
+        
+        String data = bufferedReader.readLine();
+        System.out.println("Header : " + data);
+        data = bufferedReader.readLine();
+        
+        while (data != null) {
+            String[] dataAry = data.split(",");
+            
+            Nasabah n = new Nasabah();
+            n.setId(dataAry[0]);
+            n.setNama(dataAry[1]);
+            
+            if(dataAry[2].equalsIgnoreCase("pria")){
+                n.setJenisKelamin(JenisKelamin.PRIA);
+            } else if(dataAry[2].equalsIgnoreCase("wanita")) {
+                n.setJenisKelamin(JenisKelamin.WANITA);
+            }
+            
+            result.add(n);
+            data = bufferedReader.readLine();
+        }
+        
+        return result;
     }
 }

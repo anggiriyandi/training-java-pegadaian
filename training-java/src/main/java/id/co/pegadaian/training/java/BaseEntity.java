@@ -10,6 +10,7 @@ package id.co.pegadaian.training.java;
  * @author anggi
  */
 public class BaseEntity {
+    
     private String id;
 
     public String getId() {
@@ -19,6 +20,4 @@ public class BaseEntity {
     public void setId(String id) {
         this.id = id;
     }
-    
-    
 }
