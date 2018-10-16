@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    
+<!--    KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
+    koneksiDatabase.setDbDriver("com.mysql.jdbc.Driver");
+    koneksiDatabase.setDbUrl("jdbc:mysql://localhost/latihan_java");
+    koneksiDatabase.setDbUsername("root");
+    koneksiDatabase.setDbPassword("admin");-->
+    
+
+    <bean id="koneksiDatabase" class="id.co.pegadaian.training.spring.ioc.KoneksiDatabase">   
+        <property name="dbDriver" value="com.mysql.jdbc.Driver"/>
+        <property name="dbUrl" value="jdbc:mysql://localhost/latihan_java"/>
+        <property name="dbUsername" value="root"/>
+        <property name="dbPassword" value="admin"/>
+    </bean>
+    
+</beans>

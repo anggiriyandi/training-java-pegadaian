@@ -33,4 +33,8 @@ public class NasabahDao {
         
         koneksiDatabase.disconnect();
     }
+    
+    public void testKoneksi() throws ClassNotFoundException, SQLException{
+        koneksiDatabase.connect();
+    }
 }
