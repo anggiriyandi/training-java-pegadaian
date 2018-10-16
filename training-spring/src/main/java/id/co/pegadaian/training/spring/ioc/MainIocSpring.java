@@ -7,6 +7,7 @@ package id.co.pegadaian.training.spring.ioc;
 
 import com.sun.jmx.snmp.SnmpDataTypeEnums;
 import java.sql.SQLException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,7 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author anggi
  */
 public class MainIocSpring {
-    
+
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-ioc.xml");
         
