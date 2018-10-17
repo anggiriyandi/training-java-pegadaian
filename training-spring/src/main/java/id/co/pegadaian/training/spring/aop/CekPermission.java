@@ -5,14 +5,14 @@
  */
 package id.co.pegadaian.training.spring.aop;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anggi
  */
 
-@Service
-public class NewClass {
+@Component
+public class CekPermission {
     
 }
