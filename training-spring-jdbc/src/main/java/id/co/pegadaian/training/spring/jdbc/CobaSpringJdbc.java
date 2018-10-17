@@ -22,8 +22,8 @@ public class CobaSpringJdbc {
         NasabahDao nasabahDao = context.getBean("nasabahDao",NasabahDao.class);
         
         Nasabah nasabah = new Nasabah();
-        nasabah.setId("00123");
-        nasabah.setNama("Rudi");
+        nasabah.setId("001234");
+        nasabah.setNama("Rudi 2");
         nasabah.setJenisKelamin(JenisKelamin.PRIA);
         
         nasabahDao.simpan(nasabah);
