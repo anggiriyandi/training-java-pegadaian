@@ -31,12 +31,12 @@
         <property name="koneksiDatabase" ref="koneksiDatabaseBean"/>
     </bean>
     
-    <bean id="customPoincut" class="org.springframework.aop.support.NameMatchMethodPointcut">
-        <property name="mappedNames" value="connect" />
+    <bean id="daftarMethod" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedNames" value="connect,disconnect"/>
     </bean>
     
     <bean id="customAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
-        <property name="pointcut" ref="customPoincut" />
+        <property name="pointcut" ref="daftarMethod" />
         <property name="advice" ref="cekPermission"/>
     </bean>
     

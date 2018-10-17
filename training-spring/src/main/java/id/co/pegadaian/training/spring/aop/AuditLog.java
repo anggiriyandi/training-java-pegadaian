@@ -24,6 +24,7 @@ public class AuditLog implements MethodInterceptor {
         
         
         Object result = targetObject.proceed();
+        
         System.out.println("Menjalankan advice auditlog di method : " + 
                 targetObject.getMethod().getName() + " pada tanggal : " + new Date());
         
