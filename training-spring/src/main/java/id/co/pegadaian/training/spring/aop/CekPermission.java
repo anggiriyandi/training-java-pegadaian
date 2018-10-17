@@ -5,6 +5,9 @@
  */
 package id.co.pegadaian.training.spring.aop;
 
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,6 +16,15 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class CekPermission {
-    
+public class CekPermission implements MethodInterceptor {
+
+    @Override
+    public Object invoke(MethodInvocation targetMethod) throws Throwable {
+        
+        System.out.println("Menjalankan advice cek premission untuk method : " + targetMethod.getMethod().getName());
+        
+        Object result = targetMethod.proceed();
+        
+        return result;
+    }
 }

@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
     
     
-    <context:component-scan base-package="id.co.pegadaian.training.spring.ioc"/>
+    <context:component-scan base-package="id.co.pegadaian.training.spring"/>
     
 <!--    KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
     koneksiDatabase.setDbDriver("com.mysql.jdbc.Driver");
@@ -29,6 +29,26 @@
    
     <bean id="nasabahDao" class="id.co.pegadaian.training.spring.ioc.NasabahDao">
         <property name="koneksiDatabase" ref="koneksiDatabaseBean"/>
+    </bean>
+    
+    <bean id="customPoincut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedNames" value="connect" />
+    </bean>
+    
+    <bean id="customAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="customPoincut" />
+        <property name="advice" ref="cekPermission"/>
+    </bean>
+    
+    <bean id="koneksiDatabaseAop" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="koneksiDatabaseBean" />
+        <property name="interceptorNames">
+            <list>
+                <!--<value>cekPermission</value>-->
+                <value>customAdvisor</value>
+                <value>auditLog</value>
+            </list>
+        </property>
     </bean>
     
 </beans>

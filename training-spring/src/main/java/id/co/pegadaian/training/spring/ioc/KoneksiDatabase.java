@@ -29,6 +29,7 @@ public class KoneksiDatabase {
     }
 
     public void disconnect() throws SQLException {
+        System.out.println("menjalankan method disconnect");
         if (connection != null) {
             connection.close();
         }
