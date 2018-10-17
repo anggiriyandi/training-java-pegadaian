@@ -26,3 +26,4 @@
 /.nb-gradle/
 
 /training-spring/target/
+/training-spring-jdbc/target/
