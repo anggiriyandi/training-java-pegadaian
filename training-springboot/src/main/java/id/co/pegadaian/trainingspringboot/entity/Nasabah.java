@@ -24,6 +24,8 @@ public class Nasabah {
 //    @GeneratedValue(generator = "system-uuid2")
 //    @GenericGenerator(name = "system-uuid2", strategy = "uuid2")
 //    @Column(columnDefinition = "varchar(36)")
+    
+    
     @Id
     private String id;
     private String nama;

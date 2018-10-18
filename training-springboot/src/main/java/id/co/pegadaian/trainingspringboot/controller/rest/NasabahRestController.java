@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class NasabahController {
+public class NasabahRestController {
     
     @Autowired
     private NasabahDao nasabahDao;
