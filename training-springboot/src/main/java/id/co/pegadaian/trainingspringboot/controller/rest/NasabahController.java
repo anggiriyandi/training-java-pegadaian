@@ -8,8 +8,10 @@ package id.co.pegadaian.trainingspringboot.controller.rest;
 import id.co.pegadaian.trainingspringboot.dao.NasabahDao;
 import id.co.pegadaian.trainingspringboot.entity.Nasabah;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,14 +52,24 @@ public class NasabahController {
         return list;
     }
     
-    public Nasabah cariNasabahById(String id){
-        Nasabah nasabah = nasabahDao.findById(id).get();
-        return nasabah;
+    @GetMapping("/nasabah/{idNasabah}")
+    public Nasabah cariNasabahById(@PathVariable(name = "idNasabah") String id){
+        Optional<Nasabah> nasabah = nasabahDao.findById(id);
+        
+        if(nasabah.isPresent()){
+            return nasabah.get();
+        }else{
+            return null;
+        }
     }
     
-    
-    public void deleteNasabah(){
-    
+    @GetMapping("/nasabah/delete/{id}")
+    public void deleteNasabah(@PathVariable String id){
+        Optional<Nasabah> nasabah = nasabahDao.findById(id);
+        
+        if(nasabah.isPresent()){
+            nasabahDao.delete(nasabah.get());
+        }
     }
     
 }
