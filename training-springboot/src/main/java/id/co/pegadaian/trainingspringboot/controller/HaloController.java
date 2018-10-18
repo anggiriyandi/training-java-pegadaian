@@ -21,4 +21,9 @@ public class HaloController {
         return "halo";
     }
     
+    @GetMapping("/")
+    public String layout () {
+        return "layout";
+    }
+    
 }
