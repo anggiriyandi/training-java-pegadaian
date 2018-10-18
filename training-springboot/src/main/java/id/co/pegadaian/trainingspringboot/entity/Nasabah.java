@@ -7,8 +7,10 @@ package id.co.pegadaian.trainingspringboot.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -16,9 +18,12 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "m_nasabah")
+@Table
 public class Nasabah {
     
+//    @GeneratedValue(generator = "system-uuid2")
+//    @GenericGenerator(name = "system-uuid2", strategy = "uuid2")
+//    @Column(columnDefinition = "varchar(36)")
     @Id
     private String id;
     private String nama;
