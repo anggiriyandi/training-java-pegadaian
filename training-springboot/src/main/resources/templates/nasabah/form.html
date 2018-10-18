@@ -6,6 +6,67 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        
+        <section layout:fragment="content">
+            <div class="col-md-6">
+                <form th:action="@{/nasabah/form}" th:method="post" th:object="${nasabah}">
+                    <div class="form-group">
+                        <label>Id</label>
+                        <input type="text" class="form-control" placeholder="id" th:field="*{id}"/>
+                        <div class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Nasabah</label>
+                        <input type="text" class="form-control" placeholder="Nama Nasabah" th:field="*{nama}"/>
+                        <div class="text-danger" th:if="${#fields.hasErrors('nama')}" th:errors="*{nama}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <input type="text" class="form-control" placeholder="Alamat" th:field="*{alamat}"/>
+                        <div class="text-danger" th:if="${#fields.hasErrors('alamat')}" th:errors="*{alamat}"></div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="nasabah : ${data}">
+                            <td th:text="${nasabah.id}"></td>
+                            <td th:text="${nasabah.nama}"></td>
+                            <td th:text="${nasabah.alamat}"></td>
+                            <td  style="white-space: nowrap">
+                                <a th:href="@{/nasabah/form(id=${nasabah.id})}" 
+                                   class="btn btn-info btn-sm">
+                                    <i class="fa fa-edit"></i> Edit</a>
+                                <a th:href="@{/nasabah/form/delete(id=${nasabah.id})}" 
+                                   class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+<!--                <div class="box-footer clearfix text-center">
+                    <div th:if="${not #lists.isEmpty(data)}">
+                        <ul class="pagination" sd:pagination="full"></ul>
+                    </div>
+                </div>-->
+            </div>
+        </section>
     </body>
 </html>

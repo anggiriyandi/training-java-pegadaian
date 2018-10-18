@@ -5,12 +5,10 @@
  */
 package id.co.pegadaian.trainingspringboot.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -28,7 +26,11 @@ public class Nasabah {
     
     @Id
     private String id;
+    
+    @NotEmpty(message =  "Nama Tidak Boleh Kosong")
     private String nama;
+    
+    @NotEmpty(message = "Nama Tidak Boleh Kosong")
     private String alamat;
 
     public String getId() {
