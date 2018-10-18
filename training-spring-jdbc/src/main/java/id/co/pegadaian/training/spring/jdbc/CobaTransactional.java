@@ -13,20 +13,26 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author anggi
  */
-public class CobaSpringJdbc {
-
+public class CobaTransactional {
+    
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-jdbc.xml");
-
-        NasabahDao nasabahDao = context.getBean("nasabahDao", NasabahDao.class);
-
-        Nasabah nasabah = new Nasabah();
-        nasabah.setId("123123");
-        nasabah.setNama("Rudi 123");
-        nasabah.setJenisKelamin(JenisKelamin.PRIA);
-
-        nasabahDao.simpan(nasabah);
+        
+        TransactionalService transactionalService = context.getBean("transactionalService", TransactionalService.class);
+        
+        Nasabah nasabah1 = new Nasabah();
+        nasabah1.setNama("anggi");
+        nasabah1.setId("01");
+        nasabah1.setJenisKelamin(JenisKelamin.PRIA);
+        
+        
+        Nasabah nasabah2 = new Nasabah();
+        nasabah2.setNama("wahyu");
+        nasabah2.setId("002");
+        nasabah2.setJenisKelamin(JenisKelamin.PRIA);
+        
+        
+        transactionalService.simpanTransactional(nasabah1, nasabah2);
     }
-
+    
 }

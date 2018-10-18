@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -22,15 +24,17 @@ public class NasabahDao {
     @Autowired
     private DataSource dataSource;
     
+    
     private final String SQL_INSERT = "insert into nasabah (id,nama,jenis_kelamin) values (?,?,?)";
     
     public void simpan(Nasabah nasabah) throws SQLException, ClassNotFoundException {
         
-        PreparedStatement ps = dataSource.getConnection().prepareStatement(SQL_INSERT);
-        ps.setString(1, nasabah.getId());
-        ps.setString(2, nasabah.getNama());
-        ps.setString(3, nasabah.getJenisKelamin().toString());
-        ps.executeUpdate();
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        
+        jdbcTemplate.update("insert into nasabah (id,nama,jenis_kelamin) values (?,?,?)", 
+                nasabah.getId(),
+                nasabah.getNama(),
+                nasabah.getJenisKelamin().toString());
         
     }
 }
