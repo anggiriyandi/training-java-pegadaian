@@ -9,8 +9,10 @@ import id.co.pegadaian.trainingspringboot.dao.NasabahDao;
 import id.co.pegadaian.trainingspringboot.entity.Nasabah;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -35,9 +37,17 @@ public class NasabahController {
         nasabahDao.save(n);
     } 
     
+    @GetMapping("/nasabah/cariSemuaNasabah")
     public List<Nasabah> cariSemuaNasabah(){
         List<Nasabah> semuaNasabah = (List<Nasabah>) nasabahDao.findAll();
         return semuaNasabah;
+    }
+    
+    @GetMapping("/nasabah")
+    public List<Nasabah> cariNasabahByNama(@RequestParam(name = "namaNasabah") String nama){
+        
+        List<Nasabah> list = nasabahDao.findByNama(nama);
+        return list;
     }
     
     public Nasabah cariNasabahById(String id){
@@ -45,11 +55,6 @@ public class NasabahController {
         return nasabah;
     }
     
-    public List<Nasabah> cariNasabahByNama(String nama){
-        
-        List<Nasabah> list = nasabahDao.findByNama(nama);
-        return list;
-    }
     
     public void deleteNasabah(){
     
