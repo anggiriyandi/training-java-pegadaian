@@ -5,12 +5,21 @@
  */
 package id.co.pegadaian.trainingspringboot.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author anggi
  */
+
+@Entity
+@Table(name = "m_nasabah")
 public class Nasabah {
     
+    @Id
     private String id;
     private String nama;
     private String alamat;
@@ -38,7 +47,5 @@ public class Nasabah {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
-    
-    
     
 }
