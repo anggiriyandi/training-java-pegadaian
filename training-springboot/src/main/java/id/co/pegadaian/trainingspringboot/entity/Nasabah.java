@@ -26,7 +26,7 @@ public class Nasabah extends BaseEntity {
 
     @NotEmpty(message = "Nama Tidak Boleh Kosong")
     private String alamat;
-
+    
     public String getNama() {
         return nama;
     }
