@@ -54,12 +54,13 @@ public class NasabahController {
     }
 
     @PostMapping("/nasabah/form")
-    public String simpanNasabah(@Valid Nasabah nasabah, BindingResult errors, ModelMap modelMap) {
+    public String simpanNasabah(@Valid Nasabah nasabah, BindingResult errors, ModelMap modelMap, 
+            @PageableDefault(size = 2) Pageable pageable) {
 
         if (errors.hasErrors()) {
             modelMap.put("nasabah", nasabah);
-            List<Nasabah> dataNasabah = (List<Nasabah>) nasabahDao.findAll();
-            modelMap.put("data", dataNasabah);
+            Page<Nasabah> ns = nasabahDao.findAll(pageable);
+            modelMap.put("data", ns);
             return "nasabah/form";
         }
 
