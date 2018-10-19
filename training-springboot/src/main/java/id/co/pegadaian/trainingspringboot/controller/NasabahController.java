@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -31,7 +34,8 @@ public class NasabahController {
     NasabahDao nasabahDao;
 
     @GetMapping("/nasabah/form")
-    public String formNasabah(@RequestParam(required = false) String id, ModelMap modelMap) {
+    public String formNasabah(@RequestParam(required = false) String id, ModelMap modelMap,
+            @PageableDefault(size = 2) Pageable pageable) {
         Nasabah nasabah = new Nasabah();
 
         if (StringUtils.hasText(id)) {
@@ -43,7 +47,8 @@ public class NasabahController {
 
         modelMap.put("nasabah", nasabah);
 
-        List<Nasabah> dataNasabah = (List<Nasabah>) nasabahDao.findAll();
+//        List<Nasabah> dataNasabah = (List<Nasabah>) nasabahDao.findAll();
+        Page<Nasabah> dataNasabah = nasabahDao.findAll(pageable);
         modelMap.put("data", dataNasabah);
         return "nasabah/form";
     }

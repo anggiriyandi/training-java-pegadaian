@@ -45,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="nasabah : ${data}">
+                        <tr th:each="nasabah : ${data.content}">
                             <td th:text="${nasabah.id}"></td>
                             <td th:text="${nasabah.nama}"></td>
                             <td th:text="${nasabah.alamat}"></td>
@@ -61,11 +61,11 @@
                     </tbody>
                 </table>
 
-<!--                <div class="box-footer clearfix text-center">
+                <div class="box-footer clearfix text-center">
                     <div th:if="${not #lists.isEmpty(data)}">
                         <ul class="pagination" sd:pagination="full"></ul>
                     </div>
-                </div>-->
+                </div>
             </div>
         </section>
     </body>
