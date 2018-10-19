@@ -7,7 +7,6 @@ package id.co.pegadaian.trainingspringboot.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,9 +21,9 @@ public class User extends BaseEntity {
     
     private String username;
     private String fullname;
+    private boolean active;
     
     @OneToOne
-    @MapsId
     @JoinColumn(name = "id_group", nullable = false, columnDefinition = "varchar(36)")
     private Group group;
 
@@ -51,5 +50,12 @@ public class User extends BaseEntity {
     public void setGroup(Group group) {
         this.group = group;
     }
-    
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
