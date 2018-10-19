@@ -10,16 +10,20 @@
             <div class="col-md-6">
                 <form th:action="@{/nasabah/form}" th:method="post" th:object="${nasabah}">
                     <div class="form-group">
-                        <label>Id</label>
-                        <input type="text" class="form-control" placeholder="id" th:field="*{id}"/>
-                        <div class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">
-                        </div>
+                        <input type="hidden" class="form-control" placeholder="id" th:field="*{id}"/>
                     </div>
                     <div class="form-group">
                         <label>Nama Nasabah</label>
                         <input type="text" class="form-control" placeholder="Nama Nasabah" th:field="*{nama}"/>
                         <div class="text-danger" th:if="${#fields.hasErrors('nama')}" th:errors="*{nama}"></div>
                     </div>
+                    
+                     <div class="form-group">
+                        <label>Nomor Ktp</label>
+                        <input type="text" class="form-control" placeholder="Nomor KTP" th:field="*{noKtp}"/>
+                        <div class="text-danger" th:if="${#fields.hasErrors('noKtp')}" th:errors="*{noKtp}"></div>
+                    </div>
+                    
                     <div class="form-group">
                         <label>Alamat</label>
                         <input type="text" class="form-control" placeholder="Alamat" th:field="*{alamat}"/>
@@ -40,6 +44,7 @@
                         <tr>
                             <th scope="col">id</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">No KTP</th>
                             <th scope="col">Jenis Kelamin</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -48,6 +53,7 @@
                         <tr th:each="nasabah : ${data.content}">
                             <td th:text="${nasabah.id}"></td>
                             <td th:text="${nasabah.nama}"></td>
+                            <td th:text="${nasabah.noKtp}"></td>
                             <td th:text="${nasabah.alamat}"></td>
                             <td  style="white-space: nowrap">
                                 <a th:href="@{/nasabah/form(id=${nasabah.id})}" 

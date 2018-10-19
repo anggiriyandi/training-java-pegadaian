@@ -5,8 +5,8 @@
  */
 package id.co.pegadaian.trainingspringboot.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -14,32 +14,18 @@ import javax.validation.constraints.NotEmpty;
  *
  * @author anggi
  */
-
 @Entity
 @Table
-public class Nasabah {
-    
-//    @GeneratedValue(generator = "system-uuid2")
-//    @GenericGenerator(name = "system-uuid2", strategy = "uuid2")
-//    @Column(columnDefinition = "varchar(36)")
-    
-    
-    @Id
-    private String id;
-    
-    @NotEmpty(message =  "Nama Tidak Boleh Kosong")
+public class Nasabah extends BaseEntity {
+
+    @NotEmpty(message = "Nama Tidak Boleh Kosong")
     private String nama;
     
+    @Column(unique = true)
+    private String noKtp;
+
     @NotEmpty(message = "Nama Tidak Boleh Kosong")
     private String alamat;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getNama() {
         return nama;
@@ -56,5 +42,12 @@ public class Nasabah {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
-    
+
+    public String getNoKtp() {
+        return noKtp;
+    }
+
+    public void setNoKtp(String noKtp) {
+        this.noKtp = noKtp;
+    }
 }
